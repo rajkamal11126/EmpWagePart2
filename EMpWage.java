@@ -1,52 +1,64 @@
 //Welcome to Employee Wage Simulation 
 public class EMpWage
 {
-	private static final int EMP_RATE_PER_HRS = 20;
-	private static final int NUM_OF_WORKING_DAYS = 20;
-	private static final int MAX_HRS_IN_MONTH = 100;
+	private String companyName;
+   private int empRate;
+   private int numOfWorkingDays;
+   private int maxHrsInMonth;
 
+   public EmpWage(final String companyName, final int empRate, final int numOfWorkingDays, final int maxHrsInMonth)
+		{
+			this.companyName = companyName;
+         this.empRate = empRate;
+         this.numOfWorkingDays = numOfWorkingDays;
+         this.maxHrsInMonth = maxHrsInMonth;
+       }
 	public static void main(String[] args) {
-		calDailyEmpWage();
-	}
+		final EmpWage ewSamsung = new EmpWage("Samsung", 20, 20, 100);
+      final int totalSamEmpWages = ewSamsung.computeEmpWage();
+      final EmpWage ewWipro = new EmpWage("Wipro", 25, 15, 100);
+      final int totalWiproEmpWages = ewWipro.computeEmpWage();
+		final EmpWage ewAmazon = new EmpWage("Amazon", 25, 10, 200);
+      final int totalAmazonEmpWages = ewAmazon.computeEmpWage();
 
-	// calculate employee daily wages based on type of employee 
-	public static void calDailyEmpWage() {
+      System.out.println("Total Emp Wage of Samsung: "+totalSamEmpWages);
+      System.out.println("Total Emp Wage of Wipro: "+totalWiproEmpWages);
+		System.out.println("Total Emp Wage of Amazon: "+totalAmazonEmpWages);
+
+     }
+       //calculate employee daily wages based on type of employee
+	public int computeEmpWage() {
 		int totalWage = 0;
-		int totalEmpHrs = 0;
-		int totalWorkingDays = 0;
-		while(totalEmpHrs < MAX_HRS_IN_MONTH && totalWorkingDays<NUM_OF_WORKING_DAYS){
-			totalWorkingDays++;
+      int totalEmpHrs = 0;
+      int totalWorkingDays = 0;
+      while(totalEmpHrs < maxHrsInMonth && totalWorkingDays < numOfWorkingDays){
+         totalWorkingDays++;
 
-			final int empHrs = getEmpHrs();
-			final int empWage = empHrs*EMP_RATE_PER_HRS;
-			totalEmpHrs+=empHrs;
-			totalWage+=empWage;
-			System.out.println("Emp DAY : "+totalWorkingDays+" wages : "+empWage);
-		}
-		System.out.println("Total emp wage : "+ totalWage);
+         final int empHrs = getEmpHrs();
+         final int empWage = empHrs*empRate;
+         totalEmpHrs+=empHrs;
+         totalWage+=empWage;
+         }
+         return totalWage;
+
 	}
-	public static int getEmpHrs() {
-
+ 	public int getEmpHrs() {
 		final int isFullTime = 1;
-		final int isPartTime = 2;
-		int empHrs = 0;
-
+      final int isPartTime = 2;
+      int empHrs = 0;
 		final double randomValue = Math.floor(Math.random()*10)%3;
 
-		switch((int)randomValue) {
-
+      switch((int)randomValue) {
 			case isFullTime:
-				empHrs = 8;
-				System.out.println("Emp is present for full time.");
-				break;
-			case isPartTime:
-				empHrs = 4;
-				System.out.println("Emp is present for part time.");
-				break;
-			default:
-				System.out.println("Emp is absent");
-				break;
-		}
-		return empHrs;
-	}
+            empHrs = 8;
+            break;
+         case isPartTime:
+            empHrs = 4;
+            break;
+         default:
+				empHrs=0;
+            break;
+			}
+                return empHrs;
+     }
 }
