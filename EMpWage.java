@@ -3,7 +3,9 @@ public class EMpWage
 {
 	static final int isFullTime=1;
 	static final int isPartTime=2;
-	static int workingDays=20;
+	static final int workingDays=20;
+	static final int maxHrsInMonth=100;
+	static int totalHours=0;
 	static final double randomValue=Math.floor(Math.random()*10)%2;
 	static final int empRatePerHr=20;
 	static int salary;
@@ -11,9 +13,11 @@ public class EMpWage
 
 	public static void getEmpHrs()
 	{
-		for(int i=0; i<=workingDays; i++){
-			switch(randomValue)
-			{
+	while (totalHours<maxHrsInMonth && totalWorkingDays < workingDays ){
+		totalWorkingDays++;
+		
+		switch((int)randomValue)
+		{
 			case 1:
 				empHrs=8;
 				break;
@@ -22,12 +26,11 @@ public class EMpWage
 				break;
          default :
 				empHrs=0;
-			}
-		salary=empRatePerHr*empHrs;
-		totalSalary=totalSalary+salary;
+      }
+		totalHours=totalHours+empHrs;
+		totalSalary=empRatePerHr*totalHours;
 	}
-		System.out.println("Total Salary="+totalSalary);
-	}
+	System.out.println("Total Salary="+totalSalary);
 	public static void main(String args[])
 	{
 		getEmpHrs();
