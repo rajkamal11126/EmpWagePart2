@@ -1,5 +1,5 @@
 //Welcome to Employee Wage Simulation 
-public class EmpWage
+public class EMpWage
 {
 	static final int isFullTime=1;
 	static final int isPartTime=2;
@@ -10,21 +10,20 @@ public class EmpWage
 
 	public static void getEmpHrs()
 	{
-		if(randomValue==isFullTime)
+		switch((int)randomValue)
 		{
-			empHrs=8;
-		}
-		else if(randomValue==isPartTime)
-		{
-			empHrs=4;
-		}
-		else
-		{
-			empHrs=0;
-		}
-	}
+      	case 1:
+				empHrs=8;
+				break;
+			case 2:
+            empHrs=4;
+				break;
+       	default :
+				empHrs=0;
+        }
 	salary=empRatePerHr*empHrs;
 	System.out.println("salary= "+salary);
+	}
 	public static void main(String args[])
 	{
 		getEmpHrs();
