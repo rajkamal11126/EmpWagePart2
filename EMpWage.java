@@ -2,20 +2,26 @@
 public class EmpWage
 {
 	static final int isFullTime=1;
-	public static void Attendance()
+	static final double randomValue=Math.floor(Math.random()*10)%2;
+	static final int empRatePerHr=20;
+	static int salary;
+	static int empHrs;
+
+	public static void getEmpHrs()
 	{
-		double randomValue=Math.floor(Math.random()*10)%2;
-		if(randomValue == isFullTime)
+		if(randomValue==isFullTime)
 		{
-			System.out.println("Employee is present");
+			empHrs=8;
 		}
 		else
 		{
-			System.out.println("Employee is absent");
+			empHrs=0;
 		}
 	}
+	salary=empRatePerHr*empHrs;
+	System.out.println("salary= "+salary);
 	public static void main(String args[])
 	{
-		Attendance();
+		getEmpHrs();
 	}
 }
